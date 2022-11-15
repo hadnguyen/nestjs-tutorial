@@ -3,6 +3,7 @@ import { AuthenticationService } from './authentication.service';
 import { UsersModule } from '../users/users.module';
 import { AuthenticationController } from './authentication.controller';
 import { ConfigModule } from '@nestjs/config';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
   ],    
   providers: [
     AuthenticationService,
+    LocalStrategy,
   ],
   controllers: [AuthenticationController],
   exports: [AuthenticationService],
