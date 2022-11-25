@@ -18,6 +18,14 @@ export class UsersService {
     return newUser;
   }
 
+  async getById(id: number) {
+    const user = await this.usersRepository.findOneBy({ id });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
+  }
+
   async getByEmail(email: string) {
     const user = await this.usersRepository.findOneBy({ email });
     if (user) {
