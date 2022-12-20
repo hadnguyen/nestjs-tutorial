@@ -34,8 +34,8 @@ export class UsersService {
     throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.usersRepository.find();
   }
 
   findOne(id: number) {

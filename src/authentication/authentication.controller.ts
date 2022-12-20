@@ -12,7 +12,7 @@ export class AuthenticationController {
 
   @Post('register')
   async register(@Body() registrationData: RegisterDto) {
-    return this.authenticationService.register(registrationData);
+    return await this.authenticationService.register(registrationData);
   }
 
   @HttpCode(200)

@@ -6,9 +6,10 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { DatabaseModule } from './database/database.module';
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
-  imports: [PostsModule, ConfigModule.forRoot(), DatabaseModule, AuthenticationModule, UsersModule],
+  imports: [PostsModule, ConfigModule.forRoot(), DatabaseModule, AuthenticationModule, UsersModule, AddressModule],
   controllers: [AppController],
   providers: [AppService],
 })
