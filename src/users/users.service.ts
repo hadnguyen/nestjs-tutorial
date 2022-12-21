@@ -14,7 +14,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const newUser = await this.usersRepository.create(createUserDto);
-    await this.usersRepository.save(newUser); 
+    await this.usersRepository.save(newUser);
     return newUser;
   }
 
@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   async getByEmail(email: string) {
-    const user = await this.usersRepository.findOneBy({ email });
+    const user = await this.usersRepository.findOne({ where: { email: email } });
     if (user) {
       return user;
     }
@@ -38,8 +38,12 @@ export class UsersService {
     return await this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    const user = await this.usersRepository.findOne({ where: { id: id } });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

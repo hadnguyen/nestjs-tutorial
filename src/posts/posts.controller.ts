@@ -14,9 +14,9 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
-import FindOneParams from 'src/utils/findOneParams';
-import RequestWithUser from 'src/authentication/requestWithUser.interface';
+import JwtAuthenticationGuard from '../authentication/jwt-authentication.guard';
+import FindOneParams from '../utils/findOneParams';
+import RequestWithUser from '../authentication/requestWithUser.interface';
 
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor) // use with class-transformer

@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import Address from '../../address/entities/address.entity';
-import Post from 'src/posts/entities/post.entity';
+import Post from '../../posts/entities/post.entity';
 
 @Entity()
 class User {
