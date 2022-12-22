@@ -26,10 +26,10 @@ class User {
   public address: Address
 
   @Column({ type: "int", nullable: true })
-  address_id: number;
+  address_id?: number;
 
   @OneToMany(() => Post, (post: Post) => post.author)
-  public posts: Post[];
+  public posts?: Post[];
 }
 
 export default User;
