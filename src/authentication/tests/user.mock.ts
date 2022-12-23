@@ -10,7 +10,9 @@ const mockedUser: User = {
     street: 'streetName',
     city: 'cityName',
     country: 'countryName',
-  }
+  },
+  created_at: new Date(),
+  updated_at: new Date()
 }
 
 export default mockedUser;

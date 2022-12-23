@@ -1,4 +1,6 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import Address from '../../address/entities/address.entity';
 import Post from '../../posts/entities/post.entity';
@@ -30,6 +32,18 @@ class User {
 
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];
+
+  @Column({
+    nullable: true
+  })
+  @Exclude()
+  public currentHashedRefreshToken?: string;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  public created_at: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  public updated_at: Date;
 }
 
 export default User;
