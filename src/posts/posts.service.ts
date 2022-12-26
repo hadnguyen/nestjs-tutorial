@@ -23,8 +23,20 @@ export class PostsService {
     return newPost;
   }
 
-  async findAll() {
-    return await this.postsRepository.find({ relations: ['author'] });
+  async findAll(offset?: number, limit?: number) {
+    const [items, count] = await this.postsRepository.findAndCount({
+      relations: ['author'],
+      order: {
+        id: 'ASC'
+      },
+      skip: offset,
+      take: limit
+    });
+   
+    return {
+      items,
+      count
+    }
   }
 
   async findOne(id: number) {

@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
   Req,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -17,6 +18,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import JwtAuthenticationGuard from '../authentication/jwt-authentication.guard';
 import FindOneParams from '../utils/findOneParams';
 import RequestWithUser from '../authentication/requestWithUser.interface';
+import { PaginationParams } from '../utils/types/paginationParams';
 
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor) // use with class-transformer
@@ -30,8 +32,10 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  findAll(
+    @Query() { offset, limit }: PaginationParams
+  ) {
+    return this.postsService.findAll(offset, limit);
   }
 
   @Get(':id')
