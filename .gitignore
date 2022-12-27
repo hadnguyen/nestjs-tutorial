@@ -4,6 +4,7 @@
 
 # Secret file
 .env
+docker.env
 
 # Logs
 logs
