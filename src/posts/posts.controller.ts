@@ -11,6 +11,8 @@ import {
   ClassSerializerInterceptor,
   Req,
   Query,
+  CacheKey,
+  CacheTTL,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -19,11 +21,13 @@ import JwtAuthenticationGuard from '../authentication/jwt-authentication.guard';
 import FindOneParams from '../utils/findOneParams';
 import RequestWithUser from '../authentication/requestWithUser.interface';
 import { PaginationParams } from '../utils/types/paginationParams';
+import { GET_POSTS_CACHE_KEY } from './postsCacheKey.constant';
+import { HttpCacheInterceptor } from './httpCache.interceptor';
 
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor) // use with class-transformer
 export class PostsController {
-  constructor(private readonly postsService: PostsService) {}
+  constructor(private readonly postsService: PostsService) { }
 
   @Post()
   @UseGuards(JwtAuthenticationGuard)
@@ -31,6 +35,9 @@ export class PostsController {
     return this.postsService.create(createPostDto, req.user);
   }
 
+  @UseInterceptors(HttpCacheInterceptor)
+  @CacheKey(GET_POSTS_CACHE_KEY)
+  @CacheTTL(120)
   @Get()
   findAll(
     @Query() { offset, limit }: PaginationParams
