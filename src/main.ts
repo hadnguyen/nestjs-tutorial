@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
+import { runInCluster } from './utils/runInCluster';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,4 +10,4 @@ async function bootstrap() {
   app.use(cookieParser());
   await app.listen(3000);
 }
-bootstrap();
+runInCluster(bootstrap);

@@ -1,10 +1,16 @@
-import { CACHE_MANAGER, HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {
+  CACHE_MANAGER,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import Post from './entities/post.entity';
-import PostNotFoundException from '../posts/exception/postNotFound.exception'
+import PostNotFoundException from '../posts/exception/postNotFound.exception';
 import User from '../users/entities/user.entity';
 import { Cache } from 'cache-manager';
 import { GET_POSTS_CACHE_KEY } from './postsCacheKey.constant';
@@ -14,8 +20,8 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private postsRepository: Repository<Post>,
-    @Inject(CACHE_MANAGER) private cacheManager: Cache
-  ) { }
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
 
   async clearCache() {
     const keys: string[] = await this.cacheManager.store.keys();
@@ -23,13 +29,13 @@ export class PostsService {
       if (key.startsWith(GET_POSTS_CACHE_KEY)) {
         this.cacheManager.del(key);
       }
-    })
+    });
   }
 
   async create(createPostDto: CreatePostDto, user: User) {
     const newPost = await this.postsRepository.create({
       ...createPostDto,
-      author: user
+      author: user,
     });
     await this.postsRepository.save(newPost);
     await this.clearCache();
@@ -40,16 +46,16 @@ export class PostsService {
     const [items, count] = await this.postsRepository.findAndCount({
       relations: ['author'],
       order: {
-        id: 'ASC'
+        id: 'ASC',
       },
       skip: offset,
-      take: limit
+      take: limit,
     });
 
     return {
       items,
-      count
-    }
+      count,
+    };
   }
 
   async findOne(id: number) {

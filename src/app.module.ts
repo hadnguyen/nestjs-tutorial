@@ -11,7 +11,16 @@ import { SubscribersModule } from './subscribers/subscribers.module';
 import { CommentsModule } from './comments/comments.module';
 
 @Module({
-  imports: [PostsModule, ConfigModule.forRoot(), DatabaseModule, AuthenticationModule, UsersModule, AddressModule, SubscribersModule, CommentsModule],
+  imports: [
+    PostsModule,
+    ConfigModule.forRoot(),
+    DatabaseModule,
+    AuthenticationModule,
+    UsersModule,
+    AddressModule,
+    SubscribersModule,
+    CommentsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

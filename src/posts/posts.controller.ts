@@ -27,7 +27,7 @@ import { HttpCacheInterceptor } from './httpCache.interceptor';
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor) // use with class-transformer
 export class PostsController {
-  constructor(private readonly postsService: PostsService) { }
+  constructor(private readonly postsService: PostsService) {}
 
   @Post()
   @UseGuards(JwtAuthenticationGuard)
@@ -39,9 +39,7 @@ export class PostsController {
   @CacheKey(GET_POSTS_CACHE_KEY)
   @CacheTTL(120)
   @Get()
-  findAll(
-    @Query() { offset, limit }: PaginationParams
-  ) {
+  findAll(@Query() { offset, limit }: PaginationParams) {
     return this.postsService.findAll(offset, limit);
   }
 

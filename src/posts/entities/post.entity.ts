@@ -1,7 +1,14 @@
 import { Transform } from 'class-transformer';
 import User from '../../users/entities/user.entity';
 import Comment from '../../comments/comment.entity';
-import { Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 class Post {
@@ -26,10 +33,7 @@ class Post {
   @ManyToOne(() => User, (author: User) => author.posts)
   public author: User;
 
-  @OneToMany(
-    () => Comment,
-    (comment: Comment) => comment.post,
-  )
+  @OneToMany(() => Comment, (comment: Comment) => comment.post)
   public comments: Comment[];
 }
 
