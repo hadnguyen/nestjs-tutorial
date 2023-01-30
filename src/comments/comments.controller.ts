@@ -37,5 +37,3 @@ export default class CommentsController {
     return this.queryBus.execute(new GetCommentsQuery(postId));
   }
 }
-
-

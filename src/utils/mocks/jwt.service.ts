@@ -1,5 +1,5 @@
 const mockedJwtService = {
-    sign: () => '',
+  sign: () => '',
 };
 
 export default mockedJwtService;

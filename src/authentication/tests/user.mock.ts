@@ -12,7 +12,7 @@ const mockedUser: User = {
     country: 'countryName',
   },
   created_at: new Date(),
-  updated_at: new Date()
-}
+  updated_at: new Date(),
+};
 
 export default mockedUser;

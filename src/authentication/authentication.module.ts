@@ -22,12 +22,8 @@ import { JwtStrategy } from './jwt.strategy';
         },
       }),
     }),
-  ],    
-  providers: [
-    AuthenticationService,
-    LocalStrategy,
-    JwtStrategy,
   ],
+  providers: [AuthenticationService, LocalStrategy, JwtStrategy],
   controllers: [AuthenticationController],
   exports: [AuthenticationService],
 })

@@ -1,5 +1,12 @@
 import {
-  Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import Address from '../../address/entities/address.entity';
@@ -22,19 +29,19 @@ class User {
 
   @OneToOne(() => Address, {
     eager: true,
-    cascade: true
+    cascade: true,
   })
-  @JoinColumn({ name: "address_id" })
-  public address: Address
+  @JoinColumn({ name: 'address_id' })
+  public address: Address;
 
-  @Column({ type: "int", nullable: true })
+  @Column({ type: 'int', nullable: true })
   address_id?: number;
 
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];
 
   @Column({
-    nullable: true
+    nullable: true,
   })
   @Exclude()
   public currentHashedRefreshToken?: string;

@@ -10,8 +10,8 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>
-  ) { }
+    private usersRepository: Repository<User>,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const newUser = await this.usersRepository.create(createUserDto);
@@ -24,15 +24,23 @@ export class UsersService {
     if (user) {
       return user;
     }
-    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async getByEmail(email: string) {
-    const user = await this.usersRepository.findOne({ where: { email: email } });
+    const user = await this.usersRepository.findOne({
+      where: { email: email },
+    });
     if (user) {
       return user;
     }
-    throw new HttpException('User with this email does not exist', HttpStatus.NOT_FOUND);
+    throw new HttpException(
+      'User with this email does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async findAll() {
@@ -44,14 +52,17 @@ export class UsersService {
     if (user) {
       return user;
     }
-    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.usersRepository.save({
       id: id,
-      ...updateUserDto
-  });
+      ...updateUserDto,
+    });
   }
 
   remove(id: number) {
@@ -61,18 +72,18 @@ export class UsersService {
   async setCurrentRefreshToken(refreshToken: string, userId: number) {
     const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
     await this.usersRepository.update(userId, {
-      currentHashedRefreshToken
+      currentHashedRefreshToken,
     });
   }
 
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
     const user = await this.getById(userId);
- 
+
     const isRefreshTokenMatching = await bcrypt.compare(
       refreshToken,
-      user.currentHashedRefreshToken
+      user.currentHashedRefreshToken,
     );
- 
+
     if (isRefreshTokenMatching) {
       return user;
     }
@@ -80,7 +91,7 @@ export class UsersService {
 
   async removeRefreshToken(userId: number) {
     return this.usersRepository.update(userId, {
-      currentHashedRefreshToken: null
+      currentHashedRefreshToken: null,
     });
   }
 }

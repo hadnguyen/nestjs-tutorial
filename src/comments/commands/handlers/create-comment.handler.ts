@@ -6,7 +6,8 @@ import { Repository } from 'typeorm';
 
 @CommandHandler(CreateCommentCommand)
 export class CreateCommentHandler
-  implements ICommandHandler<CreateCommentCommand> {
+  implements ICommandHandler<CreateCommentCommand>
+{
   constructor(
     @InjectRepository(Comment)
     private commentsRepository: Repository<Comment>,
