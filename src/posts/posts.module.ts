@@ -5,6 +5,7 @@ import { PostsController } from './posts.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import Post from './entities/post.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PostsResolver } from './posts.resolver';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     TypeOrmModule.forFeature([Post]),
   ],
   controllers: [PostsController],
-  providers: [PostsService],
+  providers: [PostsService, PostsResolver],
 })
 export class PostsModule {}
