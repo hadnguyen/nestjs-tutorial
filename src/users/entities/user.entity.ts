@@ -46,6 +46,12 @@ class User {
   @Exclude()
   public currentHashedRefreshToken?: string;
 
+  @Column({ nullable: true })
+  public twoFactorAuthenticationSecret?: string;
+
+  @Column({ default: false })
+  public isTwoFactorAuthenticationEnabled: boolean;
+
   @CreateDateColumn({ type: 'timestamp' })
   public created_at: Date;
 

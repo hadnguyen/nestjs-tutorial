@@ -11,6 +11,7 @@ const mockedUser: User = {
     city: 'cityName',
     country: 'countryName',
   },
+  isTwoFactorAuthenticationEnabled: false,
   created_at: new Date(),
   updated_at: new Date(),
 };

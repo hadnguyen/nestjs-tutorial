@@ -23,6 +23,7 @@ import RequestWithUser from '../authentication/requestWithUser.interface';
 import { PaginationParams } from '../utils/types/paginationParams';
 import { GET_POSTS_CACHE_KEY } from './postsCacheKey.constant';
 import { HttpCacheInterceptor } from './httpCache.interceptor';
+import JwtTwoFactorGuard from 'src/authentication/jwt-two-factor.guard';
 
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor) // use with class-transformer
@@ -30,7 +31,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  @UseGuards(JwtAuthenticationGuard)
+  @UseGuards(JwtTwoFactorGuard)
   create(@Body() createPostDto: CreatePostDto, @Req() req: RequestWithUser) {
     return this.postsService.create(createPostDto, req.user);
   }
