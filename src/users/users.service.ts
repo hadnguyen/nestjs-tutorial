@@ -106,4 +106,13 @@ export class UsersService {
       isTwoFactorAuthenticationEnabled: true,
     });
   }
+
+  markPhoneNumberAsConfirmed(userId: number) {
+    return this.usersRepository.update(
+      { id: userId },
+      {
+        isPhoneNumberConfirmed: true,
+      },
+    );
+  }
 }

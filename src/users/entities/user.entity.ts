@@ -11,6 +11,7 @@ import {
 import { Exclude } from 'class-transformer';
 import Address from '../../address/entities/address.entity';
 import Post from '../../posts/entities/post.entity';
+import { IsNotEmpty, IsString, Matches } from 'class-validator';
 
 @Entity()
 class User {
@@ -19,6 +20,15 @@ class User {
 
   @Column({ unique: true })
   public email: string;
+
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  @Matches(/^\+[1-9]\d{1,14}$/)
+  public phoneNumber: string;
+
+  @Column({ default: false })
+  public isPhoneNumberConfirmed: boolean;
 
   @Column()
   public name: string;
