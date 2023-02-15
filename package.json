@@ -51,6 +51,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "cookie-parser": "^1.4.6",
+    "googleapis": "^111.0.0",
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.16",
     "imagemin": "^7.0.1",

@@ -14,6 +14,7 @@ const mockedUser: User = {
     country: 'countryName',
   },
   isTwoFactorAuthenticationEnabled: false,
+  isRegisteredWithGoogle: false,
   created_at: new Date(),
   updated_at: new Date(),
 };

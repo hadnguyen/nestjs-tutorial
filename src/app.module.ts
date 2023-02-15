@@ -14,6 +14,7 @@ import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { BullModule } from '@nestjs/bull';
 import { OptimizeModule } from './optimize/optimize.module';
+import { GoogleAuthenticationModule } from './googleAuthentication/googleAuthentication.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { OptimizeModule } from './optimize/optimize.module';
     SubscribersModule,
     CommentsModule,
     OptimizeModule,
+    GoogleAuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

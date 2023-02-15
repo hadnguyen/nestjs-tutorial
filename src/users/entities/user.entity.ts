@@ -62,6 +62,9 @@ class User {
   @Column({ default: false })
   public isTwoFactorAuthenticationEnabled: boolean;
 
+  @Column({ default: false })
+  public isRegisteredWithGoogle: boolean;
+
   @CreateDateColumn({ type: 'timestamp' })
   public created_at: Date;
 
