@@ -43,6 +43,8 @@
     "@types/passport-jwt": "^3.0.7",
     "@types/passport-local": "^1.0.34",
     "adm-zip": "^0.5.10",
+    "amqp-connection-manager": "^4.1.13",
+    "amqplib": "^0.10.3",
     "apollo-server-express": "^3.11.1",
     "bcrypt": "^5.1.0",
     "bull": "^4.10.2",

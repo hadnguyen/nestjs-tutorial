@@ -20,7 +20,7 @@ export default class SubscribersController {
   ) {}
 
   @Get()
-  @UseGuards(JwtAuthenticationGuard)
+  // @UseGuards(JwtAuthenticationGuard)
   async getSubscribers() {
     return this.subscribersService.send(
       {
