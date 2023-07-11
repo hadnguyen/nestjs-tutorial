@@ -10,4 +10,5 @@ async function bootstrap() {
   app.use(cookieParser());
   await app.listen(3000);
 }
-runInCluster(bootstrap);
+// runInCluster(bootstrap);
+bootstrap();

@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { TwoFactorAuthenticationService } from './twoFactor/twoFactorAuthentication.service';
 import { TwoFactorAuthenticationController } from './twoFactor/twoFactorAuthentication.controller';
+import { JwtTwoFactorStrategy } from './jwt-two-factor.strategy';
 @Module({
   imports: [
     UsersModule,
@@ -29,6 +30,7 @@ import { TwoFactorAuthenticationController } from './twoFactor/twoFactorAuthenti
     AuthenticationService,
     LocalStrategy,
     JwtStrategy,
+    JwtTwoFactorStrategy,
     TwoFactorAuthenticationService,
   ],
   controllers: [AuthenticationController, TwoFactorAuthenticationController],
